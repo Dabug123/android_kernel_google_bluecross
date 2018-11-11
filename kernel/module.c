@@ -2747,7 +2747,7 @@ static inline void kmemleak_load_module(const struct module *mod,
 }
 #endif
 
-#if 0
+#ifdef CONFIG_MODULE_SIG
 static int module_sig_check(struct load_info *info, int flags)
 {
 	int err = -ENOKEY;
@@ -3647,7 +3647,7 @@ static int load_module(struct load_info *info, const char __user *uargs,
 	if (err)
 		goto free_module;
 
-#if 0
+#ifdef CONFIG_MODULE_SIG
 	mod->sig_ok = info->sig_ok;
 	if (!mod->sig_ok) {
 		pr_notice_once("%s: module verification failed: signature "
